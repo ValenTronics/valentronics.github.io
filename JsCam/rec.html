@@ -115,7 +115,7 @@ function downloadVideo(src, filename, type) {
 startButton.addEventListener("click", function() {
   navigator.mediaDevices.getUserMedia({
       video: true,
-      audio: true
+      audio: false
     }).then(stream => {
       preview.srcObject = stream;
       downloadButton.href = stream;
