@@ -71,7 +71,7 @@ class App extends React.Component {
       const webcamPromise = navigator.mediaDevices
         .getUserMedia({
           video: true,
-          audio: false,
+          audio: true,
         })
         .then(stream => {
           // pass the current frame to the window.stream
