@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Cam</title>
+  <!-- Load TensorFlow.js-->
+  <script src="scripts/tf.min.js"></script>
+  <!-- Load the coco-ssd model. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <!-- Load React. -->
+  <script src="scripts/react.development.js" crossorigin></script>
+  <script src="scripts/react-dom.development.js" crossorigin></script>
+
+  <script src="scripts/babel.min.js"></script>
+</head>
+
+<body>
+
+  <h1>AI Cam</h1>
+  <!-- Load our React component. -->
+  <script src="detect.js" type="text/babel"></script>
+
+  <!-- We will put our React component inside this div. -->
+  <div id="root" style="float: left;"></div>
+  <video style="float: right;" id="recordingcanvas"  width="720" height="650"  controls></video>
+  
+
+  <script>
+
+let recordingdiv = document.getElementById("recordingcanvas");
+var recordingTimeMS = 60000;
+
+function log(msg) {
+  console.log(msg);
+}
+
+function wait(delayInMS) {
+  return new Promise(resolve => setTimeout(resolve, delayInMS));
+}
+
+function startRecording(stream, lengthInMS) {
+  recording = 1;
+  let recorder = new MediaRecorder(stream);
+  let data = [];
+
+  recorder.ondataavailable = event => data.push(event.data);
+  recorder.start();
+  log(recorder.state + " for " + (lengthInMS / 1000) + " seconds...");
+
+  let stopped = new Promise((resolve, reject) => {
+    recorder.onstop = resolve;
+    recorder.onerror = event => reject(event.name);
+  });
+
+  let recorded = wait(lengthInMS).then(
+    () => recorder.state == "recording" && recorder.stop()
+  );
+
+  return Promise.all([
+      stopped,
+      recorded
+    ])
+    .then(() => data);
+}
+
+function stop(stream) {
+  stream.getTracks().forEach(track => track.stop());
+}
+
+function downloadVideo(data, filename) {
+    var file = new Blob(data, {type: "video/webm"});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a");
+        recordingdiv.src = URL.createObjectURL(file);
+                 
+        a.href = recordingdiv.src;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+    recording = 0;
+}
+
+function getVid(streamz,thing) {
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + "-" + today.getSeconds();
+var dateTime = date+'_'+time;
+
+  startRecording(streamz, recordingTimeMS)
+    .then(recordedChunks => {
+      downloadVideo(recordedChunks,dateTime+"_"+ thing+".webm");
+    })
+}
+
+  </script>
+</body>
