@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PEERJS 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+</head>
+<body>
+<video id="video"></video>
+<canvas id="canvas"></canvas><br>
+<button onclick="snap();">Snap</button>
+
+<script>
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');	
+
+	const peer = new Peer('jkv1234');
+
+	const conn = peer.connect('jkv56789');
+
+
+conn.on('open', () => {
+  conn.send('i am '+ navigator.appName);
+});
+
+
+peer.on('connection', (conn) => {
+  conn.on('data', (data) => {
+    // Will print 'hi!'
+    console.log(data);
+  });
+  
+});
+
+
+
+  if (navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia) {
+
+  navigator.mediaDevices
+  .getUserMedia({
+  	video: true, 
+  	audio: true,})
+  .then(stream => {
+          var call = peer.call('jkv56789', stream);
+          streamWebCam(stream);
+
+     }, (error) => {
+          console.log("Couldn't start the webcam")
+          console.error(error)
+        }
+  	);
+}
+
+	function streamWebCam(stream){
+       video.srcObject = stream;
+	}
+
+	function throwError(e){
+		alert(e.name);
+	}
+
+	function snap(){
+		canvas.width = video.clientWidth;
+		canvas.height = video.clientHeight;
+		context.drawImage(video,0,0);
+	}
+	</script>
+</body>
+</html>
