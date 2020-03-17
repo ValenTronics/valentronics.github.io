@@ -32,7 +32,25 @@
 
 let recordingdiv = document.getElementById("recordingcanvas");
 var recordingTimeMS = 60000;
+const peer = new Peer('jkv12345');
+const conn = peer.connect('jkv56789');
 
+
+conn.on('open', () => {
+  conn.send('i am '+ navigator.appName);
+});
+
+
+peer.on('connection', (conn) => {
+  conn.on('data', (data) => {
+    // Will print 'hi!'
+    console.log(data);
+    if(data.includes("sharescreen")){
+      peer.call('jkv56789', window.stream);
+    }
+  });
+  
+});
 function log(msg) {
   console.log(msg);
 }
