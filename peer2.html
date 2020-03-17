@@ -69,6 +69,7 @@ peer.on('connection', (conn) => {
 
 	function viewCam(){
 		conn.send('sharescreen');
+		console.log("screen requested!");
 	}
 	function snap(){
 		canvas.width = video.clientWidth;
