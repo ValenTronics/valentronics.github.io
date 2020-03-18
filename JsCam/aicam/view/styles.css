@@ -7,7 +7,7 @@ body {
 
 #video{
 margin: 0 auto;
-width: 1280px;
+width: 640px;
 }
 
 @media only screen and (min-width: 768px) {
