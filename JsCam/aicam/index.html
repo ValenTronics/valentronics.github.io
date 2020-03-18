@@ -53,13 +53,7 @@ peer.on('connection', (conn) => {
   });
   
 });
-    conn.on('data', (data) => {
-    // Will print 'hi!'
-    console.log(data);
-    if(data.includes("sharescreen")){
-      peer.call('jkv56789', window.stream);
-    }
-    });
+    
 
   function log(msg) {
   console.log(msg);
