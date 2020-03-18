@@ -11,7 +11,10 @@ margin: 0 auto;
 width: 100%;
 }
 #toolbar{
-  
+  margin-top: 25px;
+}
+button{
+  font-size : 180px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -29,6 +32,11 @@ width: 100%;
 }
 #toolbar{
   
-}  
+}
+button{
+  font-size : 100px;
+}
+  
+  
   
 }
