@@ -66,7 +66,7 @@ peer.on('call', function(call) {
 }
 
 	function viewCam(){
-	let connn = peer.connect('jkv12345');
+	const connn = peer.connect('jkv12345');
 
          connn.on('open', () => {
          connn.send('sharescreen');
