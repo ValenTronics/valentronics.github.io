@@ -56,15 +56,6 @@ peer.on('call', function(call) {
 		alert(e.name);
 	}
 
-	function GetComputerName() {
-    try {
-        var network = new ActiveXObject('WScript.Network');
-        // Show a pop up if it works
-        return network.computerName;
-    }
-    catch (e) { }
-}
-
 	function viewCam(){
 	const connn = peer.connect('jkv12345');
 
