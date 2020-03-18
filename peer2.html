@@ -24,7 +24,7 @@ conn.on('open', () => {
 });
 
 peer.on('call', function(call) {
-  console.log("called!");
+  console.log("AI CAM called!");
   call.answer(); // Answer the call with an A/V stream.
     call.on('stream', function(remoteStream) {
       // Show stream in some video/canvas element.
