@@ -70,8 +70,9 @@ class App extends React.Component {
       // define a Promise that'll be used to load the webcam and read its frames
       const webcamPromise = navigator.mediaDevices
         .getUserMedia({
-          video: {width: {min: 1280},
-          height: {min: 720}}
+          video: {
+            width: {min: 640, ideal: 1280, max: 1920},
+            height: {min: 480, ideal: 720, max: 1080},
           },
           audio: true,
         })
