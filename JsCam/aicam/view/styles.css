@@ -18,7 +18,7 @@ background-color: black;
 #canvas{
 position: static;
 width: 100%;
-background-color: white;
+background-color: blue;
 display: none;
 }
 button{
@@ -44,7 +44,7 @@ width: 100%;
 #canvas{
 position: absolute;
 width: 320px;
-background-color: white;
+background-color: blue;
 left: 0px;
 top: 0px;
 display: none;
