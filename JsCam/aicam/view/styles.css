@@ -16,9 +16,11 @@ background-color: black;
   background-color: gray;
 }
 #canvas{
-margin: 0 auto;
-width: 100%;
+position: absolute;
+width: 320px;
 background-color: black;
+left: 0px;
+top: 0px;
 display: none;
 }
 button{
