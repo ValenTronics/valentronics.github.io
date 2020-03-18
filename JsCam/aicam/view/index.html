@@ -1,1 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AI CAM VIEWER</title>
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+</head>
+<body>
+<video id="video"></video>
+<canvas id="canvas"></canvas><br>
+<button onclick="snap();">Snap</button>
+<button onclick="viewCam();">View</button>
 
+<script>
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');	
+
+	const peer = new Peer('jkv56789');
+
+	const conn = peer.connect('jkv12345');
+
+conn.on('open', () => {
+  conn.send('sharescreen');
+});
+	
+  peer.on('connection', (conn) => {
+  conn.on('data', (data) => {
+    console.log(data);
+    if(data.includes("AI CAM")){
+      let connn = peer.connect('jkv12345');
+
+         connn.on('open', () => {
+         connn.send('sharescreen');
+                  });
+	console.log("screen requested!");
+    }
+  });
+  
+});
+
+peer.on('call', function(call) {
+  console.log("AI CAM called!");
+  call.answer(); // Answer the call with an A/V stream.
+    call.on('stream', function(remoteStream) {
+      // Show stream in some video/canvas element.
+      streamWebCam(remoteStream);
+    });
+});
+
+	function streamWebCam(stream){
+       video.srcObject = stream;
+	}
+
+	function throwError(e){
+		alert(e.name);
+	}
+
+	function GetComputerName() {
+    try {
+        var network = new ActiveXObject('WScript.Network');
+        // Show a pop up if it works
+        return network.computerName;
+    }
+    catch (e) { }
+}
+
+	function viewCam(){
+	let connn = peer.connect('jkv12345');
+
+         connn.on('open', () => {
+         connn.send('sharescreen');
+                  });
+	console.log("screen requested!");
+	}
+	function snap(){
+		canvas.width = video.clientWidth;
+		canvas.height = video.clientHeight;
+		context.drawImage(video,0,0);
+	}
+	</script>
+</body>
+</html>
