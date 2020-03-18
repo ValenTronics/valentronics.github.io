@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
 </head>
 <body>
-<video id="video"></video>
+<video id="video" controls></video>
 <canvas id="canvas"></canvas><br>
 <button onclick="snap();">Snap</button>
 <button onclick="viewCam();">View</button>
@@ -48,7 +48,8 @@ peer.on('call', function(call) {
 });
 
 	function streamWebCam(stream){
-       video.srcObject = stream;
+                video.srcObject = stream;
+		video.play();
 	}
 
 	function throwError(e){
