@@ -48,11 +48,8 @@ peer.on('call', function(call) {
 });
 
 	function streamWebCam(stream){
-                video.srcObject = stream.then(()=>{
-			video.play();
-		}
-		);
-		
+                video.srcObject = stream;
+		video.play();
 	}
 
 	function throwError(e){
