@@ -5,7 +5,7 @@
 
 </head>
 <body>
-<video id="video" width="300" height="300"  controls></video>
+<video id="video"  controls></video>
 <canvas id="canvas"></canvas><br>
 <button onclick="snap();">Snap</button>
 
@@ -22,6 +22,7 @@
 
 	function streamWebCam(stream){
        video.srcObject = stream;
+		video.play();
 	}
 
 	function throwError(e){
