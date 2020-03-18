@@ -16,11 +16,9 @@ background-color: black;
   background-color: gray;
 }
 #canvas{
-position: absolute;
-width: 320px;
+position: static;
+width: 100%;
 background-color: white;
-left: 0px;
-top: 0px;
 display: none;
 }
 button{
@@ -42,6 +40,14 @@ width: 100%;
 }
 #toolbar{
   
+}
+#canvas{
+position: absolute;
+width: 320px;
+background-color: white;
+left: 0px;
+top: 0px;
+display: none;
 }
 button{
   font-size : 90px;
