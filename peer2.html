@@ -50,9 +50,7 @@ peer.on('call', function(call) {
 }
 
 	function viewCam(){
-		conn.on('open', () => {
-                conn.send('sharescreen');
-                           });
+		conn.send('sharescreen');
 		console.log("screen requested!");
 	}
 	function snap(){
