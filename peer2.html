@@ -23,25 +23,7 @@ conn.on('open', () => {
   conn.send('sharescreen');
 });
 
-
-
-peer.on('connection', (conn) => {
-  conn.on('data', (data) => {
-    // Will print 'hi!'
-    console.log(data);
-	  if(data.includes("AI CAM")){
-		  conn.on('open', () => {
-  conn.send('sharescreen');
-});
-	  }
-  });
-  
-});
-
-
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia;
-
-  peer.on('call', function(call) {
+peer.on('call', function(call) {
   console.log("called!");
   call.answer(); // Answer the call with an A/V stream.
     call.on('stream', function(remoteStream) {
