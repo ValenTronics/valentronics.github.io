@@ -13,7 +13,7 @@
 <button onclick="snap();">Snap</button>
 <button onclick="viewCam();">View</button>
 </div>
-<canvas id="canvas"></canvas><br>
+<canvas id="canvas" onclick="hideCanvas();"></canvas><br>
 <script>
 	var video = document.getElementById('video');
 	var canvas = document.getElementById('canvas');
@@ -73,6 +73,9 @@ peer.on('call', function(call) {
 		canvas.height = video.clientHeight;
 		context.drawImage(video,0,0);
 		canvas.style.display = "block";
+	}
+	function hideCanvas(){
+		canvas.style.display = "none";
 	}
 	</script>
 	</div>
