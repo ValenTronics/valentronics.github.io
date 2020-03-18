@@ -41,7 +41,7 @@ class App extends React.Component {
       let thing = prediction.class;
       console.log("Thing is: "+thing);
       if(!recording){
-      if(thing.includes("phone") || thing.includes("person")){
+      if(thing.includes("cat") || thing.includes("dog") || thing.includes("person")){
         getVid(window.stream,thing);
       }
     }
