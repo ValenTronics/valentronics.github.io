@@ -34,13 +34,13 @@
 let recordingdiv = document.getElementById("recordingcanvas");
 var recordingTimeMS = 60000;
 
-const peer = new Peer('jkv12345');
-const conn = peer.connect('jkv56789');
+var peer = new Peer('jkv12345');
+var conn = peer.connect('jkv56789');
     
-/*setInterval(function(){
+setInterval(function(){
       peer = new Peer('jkv12345');
-      conn = peer.connect('jkv56789');
-    }, 120000);*/
+      //conn = peer.connect('jkv56789');
+    }, 120000);
 
 conn.on('open', () => {
   conn.send('i am AI CAM');
