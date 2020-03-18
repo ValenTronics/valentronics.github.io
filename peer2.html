@@ -50,7 +50,11 @@ peer.on('call', function(call) {
 }
 
 	function viewCam(){
-		conn.send('sharescreen');
+		let connn = peer.connect('jkv12345');
+
+connn.on('open', () => {
+  connn.send('sharescreen');
+});
 		console.log("screen requested!");
 	}
 	function snap(){
