@@ -73,7 +73,8 @@ class App extends React.Component {
           video: {
             width: {min: 640, ideal: 1280, max: 1920},
             height: {min: 480, ideal: 720, max: 1080},
-          }
+          },
+          audio: true
         })
         .then(stream => {
           // pass the current frame to the window.stream
