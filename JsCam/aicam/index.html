@@ -73,15 +73,16 @@ peer.on('disconnected', function () {
     
     
     
+ if (conn) {
+                        conn.close();
+                    }   
+conn = peer.connect('jkv5678', {
+                        reliable: true
+                    });
     
-conn = peer.connect('jkv56789');
-    
-/*setInterval(function(){
-      peer = new Peer('jkv12345');
-      conn = peer.connect('jkv56789');
-    }, 120000);*/
 
 conn.on('open', () => {
+  console.log("Connected to: " + conn.peer);
   conn.send('i am AI CAM');
 });
 
