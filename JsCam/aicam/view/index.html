@@ -100,12 +100,13 @@ peer.on('call', function(call) {
 	}
 
 	function viewCam(){
-	const connn = peer.connect('jkv12345');
+		if (conn) {
+                        conn.close();
+                    }
+	conn = peer.connect('jkv12345', {
+                        reliable: true
+                    });
 
-         connn.on('open', () => {
-         connn.send('sharescreen');
-                  });
-	console.log("screen requested!");
 	}
 	function snap(){
 		canvas.width = video.clientWidth;
