@@ -74,12 +74,8 @@ conn.on('open', () => {
   conn.on('data', (data) => {
     console.log(data);
     if(data.includes("AI CAM")){
-      let connn = peer.connect('jkv12345');
-
-         connn.on('open', () => {
-         connn.send('sharescreen');
-                  });
-	console.log("screen requested!");
+      conn.send('sharescreen');
+      console.log("screen requested!");
     }
   });
   
