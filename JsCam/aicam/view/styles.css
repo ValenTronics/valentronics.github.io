@@ -14,12 +14,12 @@ background-color: black;
 #toolbar{
   margin-top: 8px;
   margin-bottom: 8px;
-  background-color: gray;
+  background-color: white;
 }
 #canvas{
 position: static;
 width: 100%;
-background-color: blue;
+background-color: black;
 display: none;
 }
 button{
@@ -45,7 +45,7 @@ width: 100%;
 #canvas{
 position: absolute;
 width: 320px;
-background-color: blue;
+background-color: black;
 left: 0px;
 top: 0px;
 display: none;
