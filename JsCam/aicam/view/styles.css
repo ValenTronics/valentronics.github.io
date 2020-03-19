@@ -33,7 +33,7 @@ button{
   cursor: pointer;
 }
 
-@media only screen and (min-width: 719px) {
+@media only screen and (min-width: 800px) {
   /* For desktop: */
   body {
   
