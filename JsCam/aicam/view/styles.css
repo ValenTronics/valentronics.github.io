@@ -31,7 +31,7 @@ button{
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
