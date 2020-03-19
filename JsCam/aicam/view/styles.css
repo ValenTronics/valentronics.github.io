@@ -18,6 +18,7 @@ background-color: black;
 }
 #canvas{
 position: static;
+margin-top: 20px;
 width: 100%;
 background-color: black;
 display: none;
@@ -51,6 +52,7 @@ width: 100%;
 }
 #canvas{
 position: absolute;
+margin-top: 0px;
 width: 320px;
 background-color: black;
 left: 15px;
