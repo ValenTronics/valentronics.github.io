@@ -24,6 +24,14 @@ display: none;
 }
 button{
   font-size : 60px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
 }
 
 @media only screen and (min-width: 768px) {
