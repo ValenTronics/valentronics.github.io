@@ -61,11 +61,12 @@ peer.on('disconnected', function () {
  if (conn) {
                         conn.close();
                     }
-	conn = peer.connect('jkv12345, {
+	conn = peer.connect('jkv12345', {
                         reliable: true
                     });
 
 conn.on('open', () => {
+  console.log("Connected to: " + conn.peer);
   conn.send('sharescreen');
 });
 	
