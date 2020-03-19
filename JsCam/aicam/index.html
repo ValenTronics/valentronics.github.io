@@ -85,7 +85,12 @@ conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
   conn.send('i am AI CAM');
 });
-
+conn.on('data', function (data) {
+                       console.log(data);
+  if(data.includes("sharescreen")){
+      peer.call('jkv56789', window.stream);
+    }
+                    });
 
 peer.on('connection', (conn) => {
   conn.on('data', (data) => {
