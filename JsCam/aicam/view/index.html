@@ -8,7 +8,7 @@
 <body>
 	<div id="container">
 <video id="video" controls autoplay muted></video>
-
+<div id="status" style="position: fixed;bottom:0px;left:0px;"></div>
 <div id="toolbar">
 <button onclick="snap();">SNAP</button>
 
@@ -29,6 +29,7 @@
         peer.on('open', function (id) {
                         // Workaround for peer.reconnect deleting previous id
                         if (peer.id === null) {
+		            document.getElementById("status").innerHTML = 'Received null id from peer open';
                             console.log('Received null id from peer open');
                             peer.id = lastPeerId;
                         } else {
@@ -36,11 +37,12 @@
                         }
 
                         console.log('ID: ' + peer.id);
+		        document.getElementById("status").innerHTML = 'ID: ' + peer.id;
                     });
 peer.on('disconnected', function () {
                         
                         console.log('Connection lost. Please reconnect');
-
+                        document.getElementById("status").innerHTML = 'Connection lost. Please reconnect';
                         // Workaround for peer.reconnect deleting previous id
                         peer.id = lastPeerId;
                         peer._lastServerId = lastPeerId;
@@ -48,12 +50,12 @@ peer.on('disconnected', function () {
                     });
                     peer.on('close', function() {
                         conn = null;
-                        
+                        document.getElementById("status").innerHTML = 'Connection destroyed';
                         console.log('Connection destroyed');
                     });
                     peer.on('error', function (err) {
                         console.log(err);
-                        
+                        document.getElementById("status").innerHTML = err;
                     });
     
     
