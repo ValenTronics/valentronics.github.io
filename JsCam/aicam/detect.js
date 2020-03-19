@@ -39,7 +39,7 @@ class App extends React.Component {
       const width = prediction.bbox[2];
       const height = prediction.bbox[3];
       let thing = prediction.class;
-      console.log("Thing is: "+thing);
+      document.getElementById("objectdetection").innerHTML = thing;
       if(!recording){
       if(thing.includes("cat") || thing.includes("dog") || thing.includes("person")){
         getVid(window.stream,thing);
