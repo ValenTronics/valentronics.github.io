@@ -34,7 +34,6 @@
   <script>
 
 let recordingdiv = document.getElementById("recordingcanvas");
-var status = document.getElementById("status");
 var recordingTimeMS = 60000;
 
 var lastPeerId = null;
@@ -47,7 +46,7 @@ peer = new Peer('jkv12345', {
 peer.on('open', function (id) {
                         // Workaround for peer.reconnect deleting previous id
                         if (peer.id === null) {
-                            status.innerHTML = 'Received null id from peer open';
+                            document.getElementById("status").innerHTML = 'Received null id from peer open';
                             console.log('Received null id from peer open');
                             peer.id = lastPeerId;
                         } else {
@@ -55,12 +54,12 @@ peer.on('open', function (id) {
                         }
 
                         console.log('ID: ' + peer.id);
-                        status.innerHTML = 'ID: ' + peer.id;
+                        document.getElementById("status").innerHTML = 'ID: ' + peer.id;
                     });
 peer.on('disconnected', function () {
                         
                         console.log('Connection lost. Please reconnect');
-                        status.innerHTML = 'Connection lost. Please reconnect';
+                        document.getElementById("status").innerHTML = 'Connection lost. Please reconnect';
                         // Workaround for peer.reconnect deleting previous id
                         peer.id = lastPeerId;
                         peer._lastServerId = lastPeerId;
@@ -68,7 +67,7 @@ peer.on('disconnected', function () {
                     });
                     peer.on('close', function() {
                         conn = null;
-                        status.innerHTML = 'Connection destroyed';
+                        document.getElementById("status").innerHTML = 'Connection destroyed';
                         console.log('Connection destroyed');
                     });
                     peer.on('error', function (err) {
