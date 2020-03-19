@@ -24,10 +24,9 @@ display: none;
 }
 button{
   font-size : 60px;
-  
+  background-color: #4CAF50;
   border: none;
-  color: white;
-  
+  color: black;
   text-align: center;
   text-decoration: none;
   display: inline-block;
