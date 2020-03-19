@@ -46,8 +46,8 @@ width: 100%;
 position: absolute;
 width: 320px;
 background-color: black;
-left: 0px;
-top: 0px;
+left: 10px;
+top: 10px;
 display: none;
 }
 button{
