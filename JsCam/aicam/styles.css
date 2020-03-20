@@ -1,42 +1,26 @@
 body {
-  background-color: black;
+  
 }
 
 #container{
-  text-align: center;
+  
 }
 
 #video{
-margin: 0 auto;
-width: 100%;
-background-color: black;
+
 }
 #toolbar{
-  margin-top: 8px;
-  margin-bottom: 8px;
-  background-color: black;
-}
+  
 #canvas{
-position: static;
-margin: 0 auto;
-width: 100%;
-background-color: black;
-display: none;
+
 }
 button{
-  font-size : 60px;
-  background-color: #dfdfdf;
-  border: none;
-  color: green;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
+  
 }
 #status{
   position: fixed;
   bottom:0px;
-  left:0px;
+  left:7px;
   color:white;
 }
 
