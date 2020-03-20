@@ -33,6 +33,12 @@ button{
   display: inline-block;
   cursor: pointer;
 }
+#status{
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  color:white;
+}
 
 @media only screen and (min-width: 1026px) {
   /* For desktop: */
