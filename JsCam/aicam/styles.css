@@ -23,7 +23,7 @@ button{
   position: fixed;
   bottom: 0px;
   left: 7px;
-  color:white;
+  color: white;
 }
 
 @media only screen and (min-width: 1026px) {
