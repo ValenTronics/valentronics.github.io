@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div id="container">
+        <div id="camContainer">
 <video id="video" controls autoplay muted></video>
 <div id="status" ></div>
 <div id="toolbar">
@@ -16,7 +17,45 @@
 
 </div>
 <canvas id="canvas" onclick="hideCanvas();"></canvas><br>
+</div>
+<div id="qrContainer">
+  <div id="qrloadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+  <video id="qrvideo" controls autoplay muted></video>
+  <canvas id="qrcanvas" hidden></canvas>
+  <div id="qroutput" hidden>
+    <div id="qroutputMessage">No QR code detected.</div>
+    <div hidden><b>Data:</b> <span id="qroutputData"></span></div>
+  </div>
+</div>
+</div>
 <script>
+
+    var qrvideo = document.getElementById("qrvideo");
+    var qrcanvasElement = document.getElementById("qrcanvas");
+    var qrcanvas = canvasElement.getContext("2d");
+    var qrloadingMessage = document.getElementById("qrloadingMessage");
+    var qroutputContainer = document.getElementById("qroutput");
+    var qroutputMessage = document.getElementById("qroutputMessage");
+    var qroutputData = document.getElementById("qroutputData");
+
+    function drawLine(begin, end, color) {
+      qrcanvas.beginPath();
+      qrcanvas.moveTo(begin.x, begin.y);
+      qrcanvas.lineTo(end.x, end.y);
+      qrcanvas.lineWidth = 4;
+      qrcanvas.strokeStyle = color;
+      qrcanvas.stroke();
+    }
+
+    // Use facingMode: environment to attemt to get the front camera on phones
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+      qrvideo.srcObject = stream;
+      qrvideo.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+      qrvideo.play();
+      requestAnimationFrame(tick);
+    });
+
+
 	var video = document.getElementById('video');
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');	
@@ -119,7 +158,36 @@ peer.on('call', function(call) {
 	function hideCanvas(){
 		canvas.style.display = "none";
 	}
+    function tick() {
+      qrloadingMessage.innerText = "⌛ Loading video..."
+      if (qrvideo.readyState === qrvideo.HAVE_ENOUGH_DATA) {
+        qrloadingMessage.hidden = true;
+        qrcanvasElement.hidden = false;
+        qroutputContainer.hidden = false;
+
+        qrcanvasElement.height = qrvideo.videoHeight;
+        qrcanvasElement.width = qrvideo.videoWidth;
+        qrcanvas.drawImage(qrvideo, 0, 0, qrcanvasElement.width, qrcanvasElement.height);
+        var imageData = qrcanvas.getImageData(0, 0, qrcanvasElement.width, qrcanvasElement.height);
+        var code = jsQR(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: "dontInvert",
+        });
+        if (code) {
+          drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+          drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+          drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+          drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+          qroutputMessage.hidden = true;
+          qroutputData.parentElement.hidden = false;
+          qroutputData.innerText = code.data;
+        } else {
+          qroutputMessage.hidden = false;
+          qroutputData.parentElement.hidden = true;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
 	</script>
-	</div>
+	
 </body>
 </html>
