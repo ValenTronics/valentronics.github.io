@@ -29,7 +29,8 @@
 </div>
 </div>
 <script>
-
+    var remotePeerId = null;
+    var remoteIdFound = false;
     var qrvideo = document.createElement("video");//document.getElementById("qrvideo");
     var qrcanvasElement = document.getElementById("qrcanvas");
     var qrcanvas = qrcanvasElement.getContext("2d");
@@ -47,13 +48,14 @@
       qrcanvas.stroke();
     }
 
-    // Use facingMode: environment to attemt to get the front camera on phones
+	if(!remoteIdFound){
+		// Use facingMode: environment to attemt to get the front camera on phones
       navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       qrvideo.srcObject = stream;
       qrvideo.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       qrvideo.play();
       requestAnimationFrame(tick);
-    });
+    });}
 
 
 	var video = document.getElementById('video');
@@ -99,12 +101,7 @@ peer.on('disconnected', function () {
     
     
     
- if (conn) {
-                        conn.close();
-                    }
-	conn = peer.connect('jkv12345', {
-                        reliable: true
-                    });
+        
 
 conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
@@ -140,15 +137,7 @@ peer.on('call', function(call) {
 		alert(e.name);
 	}
 
-	function viewCam(){
-		if (conn) {
-                        conn.close();
-                    }
-	conn = peer.connect('jkv12345', {
-                        reliable: true
-                    });
-
-	}
+	
 	function snap(){
 		canvas.width = video.clientWidth;
 		canvas.height = video.clientHeight;
@@ -180,12 +169,20 @@ peer.on('call', function(call) {
           qroutputMessage.hidden = true;
           qroutputData.parentElement.hidden = false;
           qroutputData.innerText = code.data;
+	  remotePeerId = code.data;
+		remoteIdFound = true;
+		document.getElementById("qrContainer").hidden = true;
+		document.getElementById("camContainer").hidden = false;
+		if (conn) {conn.close();}
+	conn = peer.connect(code.data, {
+                        reliable: true
+                    });
         } else {
           qroutputMessage.hidden = false;
           qroutputData.parentElement.hidden = true;
         }
       }
-      requestAnimationFrame(tick);
+	    if(!remoteIdFound){requestAnimationFrame(tick);}
     }
 	</script>
 	
