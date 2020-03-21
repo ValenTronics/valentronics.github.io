@@ -118,7 +118,7 @@ peer.on('disconnected', function () {
 
 peer.on('call', function(call) {
   console.log("AI CAM called!");
-	remoteIdFound = true;
+	
   call.answer(); // Answer the call with an A/V stream.
     call.on('stream', function(remoteStream) {
       // Show stream in some video/canvas element.
@@ -167,10 +167,9 @@ peer.on('call', function(call) {
           qroutputMessage.hidden = true;
           qroutputData.parentElement.hidden = false;
           qroutputData.innerText = code.data;
-	  remotePeerId = code.data;
-		if(remoteIdFound){
-		document.getElementById("qrContainer").hidden = true;
-		document.getElementById("camContainer").style.display = "block";
+	  
+		
+		
 		if (conn) {conn.close();}
 	conn = peer.connect(code.data, {
                         reliable: true
@@ -178,8 +177,12 @@ peer.on('call', function(call) {
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
   document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
+  remotePeerId = code.data;
   conn.send('sharescreen');
-});}
+  remoteIdFound = true;
+  document.getElementById("qrContainer").hidden = true;
+  document.getElementById("camContainer").style.display = "block";
+});
         } else {
           qroutputMessage.hidden = false;
           qroutputData.parentElement.hidden = true;
