@@ -72,7 +72,8 @@ peer.on('open', function (id) {
                         document.getElementById("status").innerHTML = 'ID: ' + peer.id;
                         qrcode.makeCode(peer.id,200);
 	                document.getElementById("qrcode").style.display = "block";
-	                window.location.href = "https://valentronics.github.com/JsCam/aicam?camid="+peer.id;
+	                //window.location.href = "https://valentronics.github.com/JsCam/aicam?camid="+peer.id;
+	                window.history.pushState("object or string", "Title", "/new-url");
                     });
 peer.on('disconnected', function () {
                         
