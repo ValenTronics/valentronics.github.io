@@ -34,7 +34,7 @@
   <video style="position: fixed;top:248px;left:841px;background:black;" id="recordingcanvas"  width="720" height="405" controls></video>
   <div id="status" style="position: fixed;bottom:0px;left:7px;color:white;"></div>
   <div id="objectdetection" style="position: fixed;top:50px;left:7px;color:white;"></div>
-  <div id="qrcode" style="position:fixed;width:100px; height:100px;top:70px;right:120px;background:white;"></div>
+  <div id="qrcode" style="position:fixed;width:100px; height:100px;top:70px;right:120px;background:white;display:none;"></div>
   </div>
   
 
@@ -68,6 +68,7 @@ peer.on('open', function (id) {
                         console.log('ID: ' + peer.id);
                         document.getElementById("status").innerHTML = 'ID: ' + peer.id;
                         qrcode.makeCode(peer.id,200);
+	                qrcode.style.display = "block";
                     });
 peer.on('disconnected', function () {
                         
