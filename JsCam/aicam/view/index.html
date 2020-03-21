@@ -47,6 +47,12 @@
       qrcanvas.strokeStyle = color;
       qrcanvas.stroke();
     }
+	if(getParameterByName("remoteid",window.location.href)){
+    remoteIdFound = true;
+    remotePeerId = getParameterByName("remoteid",window.location.href)
+    }else{   
+     remoteIdFound = false;
+    }
 
 	if(!remoteIdFound){
 		// Use facingMode: environment to attemt to get the front camera on phones
@@ -100,7 +106,20 @@ peer.on('disconnected', function () {
                     });
     
     
-    
+                  if (conn) {conn.close();}
+	conn = peer.connect(remotePeerId, {
+                        reliable: true
+                    });
+		conn.on('open', () => {
+  console.log("Connected to: " + conn.peer);
+  document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
+  //window.history.pushState("", "", "/JsCam/aicam/view?remoteid="+conn.peer);
+  //remotePeerId = code.data;
+  conn.send('sharescreen');
+  //remoteIdFound = true;
+  //document.getElementById("qrContainer").hidden = true;
+  //document.getElementById("camContainer").style.display = "block";
+});
         
 
 
@@ -145,6 +164,15 @@ peer.on('call', function(call) {
 	function hideCanvas(){
 		canvas.style.display = "none";
 	}
+	function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
     function tick() {
       qrloadingMessage.innerText = "⌛ Loading video..."
       if (qrvideo.readyState === qrvideo.HAVE_ENOUGH_DATA) {
@@ -177,6 +205,7 @@ peer.on('call', function(call) {
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
   document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
+  window.history.pushState("", "", "/JsCam/aicam/view?remoteid="+conn.peer);
   remotePeerId = code.data;
   conn.send('sharescreen');
   remoteIdFound = true;
