@@ -46,11 +46,11 @@ class App extends React.Component {
       }
     }
       // Draw the bounding box.
-      ctx.strokeStyle = "#ffffff";
+      ctx.strokeStyle = "#d4af37";
       ctx.lineWidth = 1;
       ctx.strokeRect(x, y, width, height);
       // Draw the label background.
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = "#d4af37";
       const textWidth = ctx.measureText(prediction.class).width;
       const textHeight = parseInt(font, 10);
       // draw top left rectangle
