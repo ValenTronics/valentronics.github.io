@@ -172,7 +172,7 @@ peer.on('call', function(call) {
 	  remotePeerId = code.data;
 		remoteIdFound = true;
 		document.getElementById("qrContainer").hidden = true;
-		document.getElementById("camContainer").hidden = false;
+		document.getElementById("camContainer").styles.display = "block";
 		if (conn) {conn.close();}
 	conn = peer.connect(code.data, {
                         reliable: true
