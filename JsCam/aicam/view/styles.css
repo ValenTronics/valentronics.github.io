@@ -3,9 +3,10 @@ body {
 }
 
 #container{
-  text-align: center;
+  
 }
 #camContainer{
+  text-align: center;
   display:none;
 }
 
