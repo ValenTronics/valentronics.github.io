@@ -46,17 +46,17 @@ var recordingTimeMS = 60000;
 var lastPeerId = null;
 var peer = null; // own peer object
 var conn = null;
-function makeQrCode (text,width) {		
-	let qrcode = new QRCode(document.getElementById("qrcode"), {
-		width : width,
-	height : width
-	});
-	
-	qrcode.makeCode(text);
-}    
+var qrcode = null;	  
+    
 peer = new Peer('jkv12345', {
                         debug: 2
                     });
+qrcode = new QRCode(document.getElementById("qrcode"), {
+		text:peer.id,
+	        width : 100,
+	        height : 100
+	});
+	  
 peer.on('open', function (id) {
                         // Workaround for peer.reconnect deleting previous id
                         if (peer.id === null) {
@@ -69,7 +69,7 @@ peer.on('open', function (id) {
 
                         console.log('ID: ' + peer.id);
                         document.getElementById("status").innerHTML = 'ID: ' + peer.id;
-                        makeQrCode(peer.id,200);
+                        qrcode.makeCode(peer.id,200);
                     });
 peer.on('disconnected', function () {
                         
