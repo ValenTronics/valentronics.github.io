@@ -5,6 +5,9 @@ body {
 #container{
   text-align: center;
 }
+#camContainer{
+  display:none;
+}
 
 #video{
 margin: 0 auto;
