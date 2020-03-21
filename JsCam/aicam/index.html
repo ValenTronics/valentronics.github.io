@@ -47,8 +47,11 @@ var lastPeerId = null;
 var peer = null; // own peer object
 var conn = null;
 var qrcode = null;	  
-    
-peer = new Peer({debug: 2});
+ if(getParameterByName("camid",window.location.href)){
+    peer = new Peer(getParameterByName("camid",window.location.href),{debug: 2});
+    }else{   
+     peer = new Peer({debug: 2});
+    }
 qrcode = new QRCode(document.getElementById("qrcode"), {
 		text:peer.id,
 	        width : 225,
@@ -69,6 +72,7 @@ peer.on('open', function (id) {
                         document.getElementById("status").innerHTML = 'ID: ' + peer.id;
                         qrcode.makeCode(peer.id,200);
 	                document.getElementById("qrcode").style.display = "block";
+	                window.location.href = "https://valentronics.github.com/JsCam/aicam?camid="+peer.id;
                     });
 peer.on('disconnected', function () {
                         
@@ -157,6 +161,16 @@ function startRecording(stream, lengthInMS) {
 
 function stop(stream) {
   stream.getTracks().forEach(track => track.stop());
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function downloadVideo(data, filename) {
