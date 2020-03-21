@@ -70,7 +70,7 @@ peer.on('disconnected', function () {
                     });
                     peer.on('close', function() {
                         conn = null;
-                        document.getElementById("status").innerHTML = 'Connection destroyed';
+                        document.getElementById("status").innerHTML = 'Connection destroyed. Please refresh';
                         console.log('Connection destroyed');
                     });
                     peer.on('error', function (err) {
@@ -80,7 +80,7 @@ peer.on('disconnected', function () {
     
     
     
- if (conn) {
+/* if (conn) {
                         conn.close();
                     }   
 conn = peer.connect('jkv5678', {
@@ -97,14 +97,14 @@ conn.on('data', function (data) {
   if(data.includes("sharescreen")){
       peer.call('jkv56789', window.stream);
     }
-                    });
+                    });*/
 
 peer.on('connection', (conn) => {
   conn.on('data', (data) => {
-    // Will print 'hi!'
+    
     console.log(data);
     if(data.includes("sharescreen")){
-      peer.call('jkv56789', window.stream);
+      peer.call(conn.peer, window.stream);
     }
   });
   
