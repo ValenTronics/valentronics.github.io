@@ -34,7 +34,7 @@
   <video style="position: fixed;top:248px;left:841px;background:black;" id="recordingcanvas"  width="720" height="405" controls></video>
   <div id="status" style="position: fixed;bottom:0px;left:7px;color:black;"></div>
   <div id="objectdetection" style="position: fixed;top:50px;left:7px;color:black;"></div>
-  <div id="qrcode" style="position:fixed;width:150px; height:150px;top:70px;right:120px;background:white;display:none;"></div>
+  <div id="qrcode" style="position:fixed;width:250px; height:250px;top:70px;right:120px;background:white;display:none;"></div>
   </div>
   
 
@@ -51,8 +51,8 @@ var qrcode = null;
 peer = new Peer({debug: 2});
 qrcode = new QRCode(document.getElementById("qrcode"), {
 		text:peer.id,
-	        width : 150,
-	        height : 150
+	        width : 250,
+	        height : 250
 	});
 	  
 peer.on('open', function (id) {
