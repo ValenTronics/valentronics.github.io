@@ -48,9 +48,7 @@ var peer = null; // own peer object
 var conn = null;
 var qrcode = null;	  
     
-peer = new Peer('jkv12345', {
-                        debug: 2
-                    });
+peer = new Peer({debug: 2});
 qrcode = new QRCode(document.getElementById("qrcode"), {
 		text:peer.id,
 	        width : 100,
