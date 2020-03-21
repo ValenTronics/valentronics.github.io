@@ -105,6 +105,7 @@ peer.on('disconnected', function () {
 
 conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
+  document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
   conn.send('sharescreen');
 });
 	
