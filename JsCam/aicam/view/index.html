@@ -103,11 +103,7 @@ peer.on('disconnected', function () {
     
         
 
-conn.on('open', () => {
-  console.log("Connected to: " + conn.peer);
-  document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
-  conn.send('sharescreen');
-});
+
 	
   /*peer.on('connection', (conn) => {
   conn.on('data', (data) => {
@@ -178,6 +174,11 @@ peer.on('call', function(call) {
 	conn = peer.connect(code.data, {
                         reliable: true
                     });
+		conn.on('open', () => {
+  console.log("Connected to: " + conn.peer);
+  document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
+  conn.send('sharescreen');
+});
         } else {
           qroutputMessage.hidden = false;
           qroutputData.parentElement.hidden = true;
