@@ -13,7 +13,7 @@ class App extends React.Component {
   };
 
 
-  detectFromVideoFrame = (model, video) => {
+  /*detectFromVideoFrame = (model, video) => {
     model.detect(video).then(predictions => {
       this.showDetections(predictions);
 
@@ -24,7 +24,7 @@ class App extends React.Component {
       console.log("Couldn't start the webcam")
       console.error(error)
     });
-  };
+  };*/
 
   showDetections = predictions => {
     const ctx = this.canvasRef.current.getContext("2d");
