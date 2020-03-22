@@ -83,8 +83,8 @@
                             lastPeerId = peer.id;
                         }
 
-                        console.log('ID: ' + peer.id);
-		        document.getElementById("status").innerHTML = 'ID: ' + peer.id;
+                        console.log('CID: ' + peer.id);
+		        document.getElementById("status").innerHTML = 'CID: ' + peer.id;
                     });
 peer.on('disconnected', function () {
                         
@@ -113,34 +113,16 @@ peer.on('disconnected', function () {
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
   document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
-  //window.history.pushState("", "", "/JsCam/aicam/view?remoteid="+conn.peer);
-  //remotePeerId = code.data;
   conn.send('sharescreen');
-  //remoteIdFound = true;
   document.getElementById("qrContainer").hidden = true;
   document.getElementById("camContainer").style.display = "block";
 });
-        
-
-
-	
-  /*peer.on('connection', (conn) => {
-  conn.on('data', (data) => {
-    console.log(data);
-    if(data.includes("AI CAM")){
-      conn.send('sharescreen');
-      console.log("screen requested!");
-    }
-  });
-  
-});*/
 
 peer.on('call', function(call) {
   console.log("AI CAM called!");
 	
-  call.answer(); // Answer the call with an A/V stream.
+    call.answer(); // Answer the call with an A/V stream.
     call.on('stream', function(remoteStream) {
-      // Show stream in some video/canvas element.
       streamWebCam(remoteStream);
     });
 });
@@ -156,8 +138,8 @@ peer.on('call', function(call) {
 
 	
 	function snap(){
-		canvas.width = video.clientWidth;
-		canvas.height = video.clientHeight;
+		canvas.width = video.videoWidth;
+		canvas.height = video.videotHeight;
 		context.drawImage(video,0,0);
 		canvas.style.display = "block";
 	}
@@ -199,9 +181,7 @@ peer.on('call', function(call) {
 		
 		
 		if (conn) {conn.close();}
-	conn = peer.connect(code.data, {
-                        reliable: true
-                    });
+	        conn = peer.connect(code.data, {reliable: false});
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
   document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
