@@ -135,6 +135,7 @@ function wait(delayInMS) {
   return new Promise(resolve => setTimeout(resolve, delayInMS));
 }
 function objectDetect() {
+	console.log("root video clicked!");
   if(!detectObjects){
 	  detectObjects = true;
   }else{
