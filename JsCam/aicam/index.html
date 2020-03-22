@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>AI Cam</title>
+  <title>Quick Security Cam</title>
   
   <!-- Load TensorFlow.js-->
   <script src="scripts/tf.min.js"></script>
@@ -24,13 +24,13 @@
 
 <body>
 
-  <h1>AI Cam</h1>
+  <h1>Quick Security Cam</h1>
   <!-- Load our React component. -->
   <script src="detect.js" type="text/babel"></script>
 
   <!-- We will put our React component inside this div. -->
   <div id="container">
-  <div id="root" style="display: block;"></div>
+  <div id="root" style="display: block;" onClick="objectDetect();"></div>
   <video style="position: fixed;top:248px;left:841px;background:black;" id="recordingcanvas"  width="720" height="405" controls></video>
   <div id="status" style="position: fixed;bottom:0px;left:7px;color:black;"></div>
   <div id="objectdetection" style="position: fixed;top:50px;left:7px;color:black;"></div>
@@ -39,7 +39,7 @@
   
 
   <script>
-
+var detectObjects = false;
 let recordingdiv = document.getElementById("recordingcanvas");
 var recordingTimeMS = 60000;
 
@@ -134,7 +134,13 @@ peer.on('connection', (conn) => {
 function wait(delayInMS) {
   return new Promise(resolve => setTimeout(resolve, delayInMS));
 }
-
+function objectDetect() {
+  if(!detectObjects){
+	  detectObjects = true;
+  }else{
+	  detectObjects - false;
+  }
+}
 function startRecording(stream, lengthInMS) {
   recording = 1;
   let recorder = new MediaRecorder(stream);
