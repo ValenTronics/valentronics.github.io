@@ -47,8 +47,8 @@ var lastPeerId = null;
 var peer = null; // own peer object
 var conn = null;
 var qrcode = null;	  
- if(getParameterByName("camid",window.location.href)){
-    peer = new Peer(getParameterByName("camid",window.location.href),{debug: 2});
+ if(getParameterByName("cid",window.location.href)){
+    peer = new Peer(getParameterByName("cid",window.location.href),{debug: 2});
     }else{   
      peer = new Peer({debug: 2});
     }
@@ -72,8 +72,8 @@ peer.on('open', function (id) {
                         document.getElementById("status").innerHTML = 'ID: ' + peer.id;
                         qrcode.makeCode(peer.id,200);
 	                document.getElementById("qrcode").style.display = "block";
-	                //window.location.href = "https://valentronics.github.com/JsCam/aicam?camid="+peer.id;
-	                window.history.pushState("", "", "/JsCam/aicam?camid="+peer.id);
+	                //window.location.href = "https://valentronics.github.com/JsCam/aicam?cid="+peer.id;
+	                window.history.pushState("", "", "/JsCam/aicam?cid="+peer.id);
                     });
 peer.on('disconnected', function () {
                         
