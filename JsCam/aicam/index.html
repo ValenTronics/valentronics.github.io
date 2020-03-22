@@ -135,11 +135,13 @@ function wait(delayInMS) {
   return new Promise(resolve => setTimeout(resolve, delayInMS));
 }
 function objectDetect() {
-	console.log("root video clicked!");
+	
   if(!detectObjects){
 	  detectObjects = true;
+	  console.log("detection turned on!");
   }else{
-	  detectObjects - false;
+	  detectObjects = false;
+	  console.log("detection turned off!");
   }
 }
 function startRecording(stream, lengthInMS) {
