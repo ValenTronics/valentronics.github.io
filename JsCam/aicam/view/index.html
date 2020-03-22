@@ -156,7 +156,7 @@ peer.on('call', function(call) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
     function tick() {
-      qrloadingMessage.innerText = "⌛ Loading video..."
+      qrloadingMessage.innerText = "Scanning QR Code..."
       if (qrvideo.readyState === qrvideo.HAVE_ENOUGH_DATA) {
         qrloadingMessage.hidden = true;
         qrcanvasElement.hidden = false;
