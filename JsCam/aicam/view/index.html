@@ -18,9 +18,9 @@
 </div>
 <canvas id="canvas" onclick="hideCanvas();"></canvas><br>
 </div>
-<div id="qrContainer">
-  <div id="qrloadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
-  <video id="qrvideo" controls autoplay muted></video>
+<div id="qrContainer" >
+  <div id="qrloadingMessage">🎥 Unable to access video stream</div>
+  <video id="qrvideo" controls autoplay muted hidden></video>
   <canvas id="qrcanvas" hidden></canvas>
   <div id="qroutput" hidden>
     <div id="qroutputMessage">No QR code detected.</div>
@@ -108,7 +108,7 @@ peer.on('disconnected', function () {
     
                   if (conn) {conn.close();}
 	conn = peer.connect(remotePeerId, {
-                        reliable: true
+                        reliable: false
                     });
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
