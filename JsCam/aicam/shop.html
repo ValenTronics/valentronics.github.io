@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <title>Quick Surveillance Cam</title>
+  
+  <!-- Load TensorFlow.js-->
+  <script src="scripts/tf.min.js"></script>
+  <!-- Load the coco-ssd model. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <!-- Load React. -->
+  <script src="scripts/react.development.js" crossorigin></script>
+  <script src="scripts/react-dom.development.js" crossorigin></script>
+
+  <script src="scripts/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+  
+  <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" sizes="152×152" href="myicon.png"/>
+</head>
+
+<body>
+
+  <h1>Quick Surveillance Cam</h1>
+  <!-- Load our React component. -->
+  <script src="detectshop.js" type="text/babel"></script>
+
+  <!-- We will put our React component inside this div. -->
+  <div id="container">
+  <div id="root" style="display: block;" onClick="objectDetect();"></div>
+  <video id="recordingcanvas" controls></video>
+  <div id="status" ></div>
+  <div id="objectdetection" ></div>
+  <div id="qrcode" ></div>
+  </div>
+  
+
+  <script>
+var detectObjects = false;
+let recordingdiv = document.getElementById("recordingcanvas");
+var recordingTimeMS = 60000;
+
+var lastPeerId = null;
+var peer = null; // own peer object
+var conn = null;
+var qrcode = null;	  
+ if(getParameterByName("cid",window.location.href)){
+    peer = new Peer(getParameterByName("cid",window.location.href),{debug: 2});
+    }else{   
+     peer = new Peer({debug: 2});
+    }
+qrcode = new QRCode(document.getElementById("qrcode"), {
+		text:peer.id,
+	        width : 128,
+	        height : 128
+	});
+	  
+peer.on('open', function (id) {
+                        // Workaround for peer.reconnect deleting previous id
+                        if (peer.id === null) {
+                            document.getElementById("status").innerHTML = 'Received null id from peer open';
+                            console.log('Received null id from peer open');
+                            peer.id = lastPeerId;
+                        } else {
+                            lastPeerId = peer.id;
+                        }
+
+                        console.log('ID: ' + peer.id);
+                        document.getElementById("status").innerHTML = 'CID: ' + peer.id;
+                        qrcode.makeCode(peer.id,200);
+	                document.getElementById("qrcode").style.display = "block";
+	                //window.location.href = "https://valentronics.github.com/JsCam/aicam?cid="+peer.id;
+	                window.history.pushState("", "", "/JsCam/aicam?cid="+peer.id);
+                    });
+peer.on('disconnected', function () {
+                        
+                        console.log('Connection lost. Please reconnect');
+                        document.getElementById("status").innerHTML = 'Connection lost. Please reconnect';
+                        // Workaround for peer.reconnect deleting previous id
+                        peer.id = lastPeerId;
+                        peer._lastServerId = lastPeerId;
+                        peer.reconnect();
+                    });
+                    peer.on('close', function() {
+                        conn = null;
+                        document.getElementById("status").innerHTML = 'Connection destroyed. Please refresh';
+                        console.log('Connection destroyed');
+                    });
+                    peer.on('error', function (err) {
+                        console.log(err);
+                        status.innerHTML = err;
+                    });
+    
+    
+    
+/* if (conn) {
+                        conn.close();
+                    }   
+conn = peer.connect('jkv5678', {
+                        reliable: true
+                    });
+    
+
+conn.on('open', () => {
+  console.log("Connected to: " + conn.peer);
+  conn.send('i am AI CAM');
+});
+conn.on('data', function (data) {
+                       console.log(data);
+  if(data.includes("sharescreen")){
+      peer.call('jkv56789', window.stream);
+    }
+                    });*/
+
+peer.on('connection', (conn) => {
+  conn.on('data', (data) => {
+    
+    console.log(data);
+    if(data.includes("sharescreen")){
+      peer.call(conn.peer, window.stream);
+    }
+  });
+  
+});
+    
+
+  function log(msg) {
+  console.log(msg);
+}
+
+function wait(delayInMS) {
+  return new Promise(resolve => setTimeout(resolve, delayInMS));
+}
+function objectDetect() {
+	
+  if(!detectObjects){
+	  detectObjects = true;
+	  console.log("object detection turned on!");
+	  document.getElementById("status").innerHTML = "object detection turned on!";
+  }else{
+	  detectObjects = false;
+	  console.log("detection turned off!");
+	  document.getElementById("status").innerHTML = "object detection turned off!";
+  }
+}
+function startRecording(stream, lengthInMS) {
+  recording = 1;
+  let recorder = new MediaRecorder(stream);
+  let data = [];
+
+  recorder.ondataavailable = event => data.push(event.data);
+  recorder.start();
+  log(recorder.state + " for " + (lengthInMS / 1000) + " seconds...");
+
+  let stopped = new Promise((resolve, reject) => {
+    recorder.onstop = resolve;
+    recorder.onerror = event => reject(event.name);
+  });
+
+  let recorded = wait(lengthInMS).then(
+    () => recorder.state == "recording" && recorder.stop()
+  );
+
+  return Promise.all([
+      stopped,
+      recorded
+    ])
+    .then(() => data);
+}
+
+function stop(stream) {
+  stream.getTracks().forEach(track => track.stop());
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function downloadVideo(data, filename) {
+    var file = new Blob(data, {type: "video/webm"});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a");
+        recordingdiv.src = URL.createObjectURL(file);
+                 
+        a.href = recordingdiv.src;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            //window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+    recording = 0;
+}
+
+function getVid(streamz,thing) {
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+var dateTime = date+'_'+time;
+
+  startRecording(streamz, recordingTimeMS)
+    .then(recordedChunks => {
+      downloadVideo(recordedChunks,dateTime+"_"+ thing+".webm");
+    })
+}
+
+  </script>
+</body>
