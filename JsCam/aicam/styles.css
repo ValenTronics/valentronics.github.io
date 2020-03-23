@@ -27,8 +27,8 @@ h1{
 }
 #objectdetection{
   position: fixed;
-  top:50px;
-  left:7px;
+  top: 200px;
+  left:115px;
   color:black;
 }
 #qrcode{
@@ -85,7 +85,7 @@ h1{
 }
 #objectdetection{
   position: fixed;
-  top:140px;
+  top: 200px;
   left:115px;
   color:black;
 }
