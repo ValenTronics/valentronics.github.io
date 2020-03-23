@@ -15,7 +15,7 @@ h1{
 }
 #recordingcanvas{
   position: fixed;
-  top:680px;
+  top:740px;
   left: 7px;
   background:black;
   width: 720px; 
@@ -51,7 +51,7 @@ button{
 #status{
   position: fixed;
   bottom: auto;
-  top: 657px;
+  top: 721px;
   left: 7x;
   color: black;
 }
