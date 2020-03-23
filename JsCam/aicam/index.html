@@ -70,7 +70,7 @@ peer.on('open', function (id) {
                         }
 
                         console.log('ID: ' + peer.id);
-                        document.getElementById("status").innerHTML = 'ID: ' + peer.id;
+                        document.getElementById("status").innerHTML = 'CID: ' + peer.id;
                         qrcode.makeCode(peer.id,200);
 	                document.getElementById("qrcode").style.display = "block";
 	                //window.location.href = "https://valentronics.github.com/JsCam/aicam?cid="+peer.id;
