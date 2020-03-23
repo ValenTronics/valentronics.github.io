@@ -17,7 +17,20 @@ h1{
   top: 150px;
   left:0px;
 }
-#toolbar{
+#objectdetection{
+  position: fixed;
+  top:50px;
+  left:7px;
+  color:black;
+}
+#qrcode{
+  position:fixed;
+  width:225px; 
+  height:225px;
+  top:12px;
+  right:115px;
+  background:white;
+  display:none;
 }
 #canvas{
 
@@ -50,8 +63,20 @@ h1{
 #root video, #root canvas{
   
 }
-#toolbar{
-  
+#objectdetection{
+  position: fixed;
+  top:110px;
+  left:115px;
+  color:black;
+}
+#qrcode{
+  position:fixed;
+  width:225px; 
+  height:225px;
+  top:12px;
+  right:115px;
+  background:white;
+  display:none;
 }
 #canvas{
 
