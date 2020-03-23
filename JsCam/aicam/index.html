@@ -55,8 +55,8 @@ var qrcode = null;
     }
 qrcode = new QRCode(document.getElementById("qrcode"), {
 		text:peer.id,
-	        width : 225,
-	        height : 225
+	        width : 128,
+	        height : 128
 	});
 	  
 peer.on('open', function (id) {
