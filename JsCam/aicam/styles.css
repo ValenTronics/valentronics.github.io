@@ -35,7 +35,8 @@ h1{
   width:225px; 
   height:225px;
   top:12px;
-  right:115px;
+  left: 610px;
+  right:auto;
   background:white;
   display:none;
 }
@@ -91,6 +92,7 @@ h1{
   width:225px; 
   height:225px;
   top:12px;
+  left: auto;
   right:115px;
   background:white;
   display:none;
