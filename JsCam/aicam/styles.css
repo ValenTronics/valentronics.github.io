@@ -2,8 +2,9 @@ body {
   background: white;
 }
 h1{
+  position: fixed;
   color:black;
-  left:120px;
+  left:7px;
 }
 #container{
   
@@ -24,7 +25,7 @@ button{
   position: fixed;
   bottom: 0px;
   left: 7px;
-  color: white;
+  color: black;
 }
 
 @media only screen and (min-width: 1026px) {
@@ -51,7 +52,12 @@ h1{
 button{
   
 }
-  
+#status{
+  position: fixed;
+  bottom: 0px;
+  left: 115px;
+  color: black;
+} 
   
   
 }
