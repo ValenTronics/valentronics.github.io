@@ -3,6 +3,7 @@ body {
 }
 h1{
   color:black;
+  left:120px;
 }
 #container{
   
@@ -33,6 +34,9 @@ button{
 }
 
 #container{
+}
+h1{
+  left:120px;
 }
 
 #video{
