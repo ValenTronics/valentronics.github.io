@@ -4,6 +4,7 @@ body {
 h1{
   position: fixed;
   color:black;
+  top: 90px;
   left:115px;
 }
 #container{
@@ -24,7 +25,7 @@ button{
 #status{
   position: fixed;
   bottom: 0px;
-  left: 7px;
+  left: 115px;
   color: black;
 }
 
