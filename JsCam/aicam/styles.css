@@ -23,7 +23,7 @@ h1{
 }
 #root video, #root canvas{
   top: 150px;
-  left:115px;
+  left:0px;
 }
 #objectdetection{
   position: fixed;
@@ -82,7 +82,7 @@ h1{
 }
 #root video, #root canvas{
   top: 150px;
-  left:115px;
+  left:0px;
 }
 #objectdetection{
   position: fixed;
