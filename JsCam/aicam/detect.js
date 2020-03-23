@@ -9,7 +9,7 @@ class App extends React.Component {
   styles = {
     position: 'fixed',
     top: 150,
-    left: 120,
+    left: 115,
   };
 
 
