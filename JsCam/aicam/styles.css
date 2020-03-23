@@ -49,7 +49,7 @@ button{
 }
 #status{
   position: fixed;
-  bottom: 0px;
+  bottom: auto;
   top: 657px;
   left: 115px;
   color: black;
@@ -102,6 +102,7 @@ h1{
 }
 #status{
   position: fixed;
+  top: auto;
   bottom: 0px;
   left: 7px;
   color: black;
