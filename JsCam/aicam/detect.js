@@ -15,7 +15,7 @@ class App extends React.Component {
 
   detectFromVideoFrame = (model, video) => {
     
-    if(detectObjects){
+    //if(detectObjects){
     model.detect(video).then(predictions => {
       this.showDetections(predictions);
 
@@ -26,7 +26,7 @@ class App extends React.Component {
       console.log("Couldn't start the webcam");
       console.error(error);
     });
-  }
+  //}
   };
 
   showDetections = predictions => {
