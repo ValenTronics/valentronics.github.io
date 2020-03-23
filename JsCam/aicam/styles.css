@@ -12,17 +12,17 @@ h1{
 #container{
   
 }
-video{
+#recordingcanvas{
   position: fixed;
-  top:247px;
-  right:115px;
+  top:680px;
+  left: 7px;
   background:black;
   width: 720px; 
   height: 405px; 
 }
 #root video, #root canvas{
   top: 150px;
-  left:0px;
+  left:7px;
 }
 #objectdetection{
   position: fixed;
@@ -71,7 +71,8 @@ h1{
 }
 
 #root video, #root canvas{
-  
+  top: 150px;
+  left:115px;
 }
 #objectdetection{
   position: fixed;
