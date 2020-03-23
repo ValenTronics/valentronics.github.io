@@ -13,8 +13,9 @@ h1{
   
 }
 
-#video{
-
+#root video, #root canvas{
+  top: 150px;
+  left:0px;
 }
 #toolbar{
 }
@@ -46,8 +47,8 @@ h1{
   left:115px;
 }
 
-#video{
-
+#root video, #root canvas{
+  
 }
 #toolbar{
   
