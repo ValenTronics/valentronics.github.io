@@ -5,7 +5,7 @@ h1{
   position: fixed;
   color:black;
   top: 90px;
-  left:115px;
+  left:7px;
 }
 #container{
   
@@ -38,6 +38,9 @@ button{
 #container{
 }
 h1{
+  position: fixed;
+  color:black;
+  top: 90px;
   left:115px;
 }
 
