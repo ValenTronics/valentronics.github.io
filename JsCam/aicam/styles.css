@@ -12,7 +12,14 @@ h1{
 #container{
   
 }
-
+video{
+  position: fixed;
+  top:247px;
+  right:115px;
+  background:black;
+  width: 720px; 
+  height: 405px; 
+}
 #root video, #root canvas{
   top: 150px;
   left:0px;
