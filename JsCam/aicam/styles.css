@@ -2,10 +2,9 @@ body {
   background: white;
 }
 h1{
-  position: fixed;
+  
   color:black;
-  top: 90px;
-  left:115px;
+  
 }
 #container{
   
@@ -29,7 +28,7 @@ button{
   color: black;
 }
 
-@media screen and (min-width: 768px) {/*768 and bigger*/
+@media screen and (min-width: 468px) {/*768 and bigger*/
   /* For desktop: */
   body {
   
@@ -38,10 +37,10 @@ button{
 #container{
 }
 h1{
-  position: fixed;
+  /*position: fixed;*/
   color:green;
-  top: 90px;
-  left:115px;
+  /*top: 90px;
+  left:115px;*/
 }
 
 #video{
