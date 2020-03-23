@@ -50,7 +50,8 @@ button{
 #status{
   position: fixed;
   bottom: 0px;
-  left: 7px;
+  top: 657px;
+  left: 115px;
   color: black;
 }
 #root{
