@@ -51,6 +51,9 @@ button{
   left: 7px;
   color: black;
 }
+#root{
+  z-index: 10;
+}
 
 @media screen and (min-width: 1026px) {/*1026 and bigger*/
   /* For desktop: */
