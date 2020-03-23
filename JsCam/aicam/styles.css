@@ -23,7 +23,7 @@ h1{
 }
 #root video, #root canvas{
   top: 150px;
-  left:7px;
+  left:115px;
 }
 #objectdetection{
   position: fixed;
