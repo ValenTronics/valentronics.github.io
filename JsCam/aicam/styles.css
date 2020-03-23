@@ -34,8 +34,8 @@ h1{
 }
 #qrcode{
   position:fixed;
-  width:225px; 
-  height:225px;
+  width:128px; 
+  height:128px;
   top:12px;
   left: 502px;
   right:auto;
