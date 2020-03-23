@@ -22,6 +22,7 @@ h1{
   height: 405px; 
 }
 #root video, #root canvas{
+  position: fixed;
   top: 150px;
   left:0px;
 }
@@ -81,6 +82,7 @@ h1{
   height: 405px; 
 }
 #root video, #root canvas{
+  position: fixed;
   top: 150px;
   left:0px;
 }
