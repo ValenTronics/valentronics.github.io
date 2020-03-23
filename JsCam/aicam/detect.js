@@ -8,7 +8,7 @@ class App extends React.Component {
   // we are gonna use inline style
   styles = {
     position: 'fixed',
-    top: 247,
+    top: 150,
     left: 115,
   };
 
