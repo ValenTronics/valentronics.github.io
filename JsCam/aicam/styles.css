@@ -5,7 +5,7 @@ h1{
   
   position: fixed;
   color:black;
-  top: 8px;/*90*/
+  top: 5px;/*90*/
   left:190px;
   right: auto;
   
@@ -24,7 +24,7 @@ h1{
 }
 #root video, #root canvas{
   position: fixed;
-  top: 100px;/*150*/
+  top: 95px;/*150*/
   left:7px;
 }
 #objectdetection{
@@ -38,7 +38,7 @@ h1{
   width:128px; 
   height:128px;
   top:100px;/*15px*/
-  left: 572px;/*599 585*/
+  left: 570px;/*599 585*/
   right:auto;
   background:white;
   display:none;
@@ -52,7 +52,7 @@ button{
 #status{
   position: fixed;
   bottom: auto;
-  top: 700px;
+  top: 697px;
   left: 7x;
   color: black;
 }
