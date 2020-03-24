@@ -78,7 +78,7 @@ h1{
 #recordingcanvas{
   position: fixed;
   top:740;/*740*/
-  bottom:0px;
+  bottom:auto;
   left: 0px;
   background:black;
   width: 720px; 
