@@ -80,7 +80,8 @@ peer.on('disconnected', function () {
                         disconnected = true;
                         console.log('Connection lost. Please reconnect');
                         document.getElementById("status").innerHTML = 'Connection lost. Please reconnect';
-                        // Workaround for peer.reconnect deleting previous id
+                        document.getElementById("qrcode").style.display = "none";
+	                // Workaround for peer.reconnect deleting previous id
                         peer.id = lastPeerId;
                         peer._lastServerId = lastPeerId;
                         peer.reconnect();
