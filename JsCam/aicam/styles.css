@@ -5,7 +5,7 @@ h1{
   
   position: fixed;
   color:black;
-  top: 70px;/*90*/
+  top: 50px;/*90*/
   left:7px;
   right: auto;
   
@@ -15,7 +15,8 @@ h1{
 }
 #recordingcanvas{
   position: fixed;
-  top:740px;
+  top:auto;/*740*/
+  bottom:0px;
   left: 0px;
   background:black;
   width: 720px; 
@@ -23,7 +24,7 @@ h1{
 }
 #root video, #root canvas{
   position: fixed;
-  top: 130px;
+  top: 130px;/*150*/
   left:7px;
 }
 #objectdetection{
@@ -75,6 +76,7 @@ h1{
 #recordingcanvas{
   position: fixed;
   top:247px;
+  bottom:auto;
   left: auto;
   right: 115px;
   background:black;
