@@ -43,7 +43,7 @@
 var detectObjects = false;
 let recordingdiv = document.getElementById("recordingcanvas");
 var recordingTimeMS = 60000;
-
+var disconnected = true;
 var lastPeerId = null;
 var peer = null; // own peer object
 var conn = null;
@@ -68,7 +68,7 @@ peer.on('open', function (id) {
                         } else {
                             lastPeerId = peer.id;
                         }
-
+                        disconnected = false;
                         console.log('ID: ' + peer.id);
                         document.getElementById("status").innerHTML = 'CID: ' + peer.id;
                         qrcode.makeCode(peer.id,200);
@@ -77,7 +77,7 @@ peer.on('open', function (id) {
 	                window.history.pushState("", "", "/JsCam/aicam?cid="+peer.id);
                     });
 peer.on('disconnected', function () {
-                        
+                        disconnected = true;
                         console.log('Connection lost. Please reconnect');
                         document.getElementById("status").innerHTML = 'Connection lost. Please reconnect';
                         // Workaround for peer.reconnect deleting previous id
@@ -94,7 +94,11 @@ peer.on('disconnected', function () {
                         console.log("ERRROR: "+err.type);
                         status.innerHTML = "ERRROR: "+err.type;
                     });
-    
+                    setInterval(function(){ if(disconnected){
+					       peer.id = lastPeerId;
+                                               peer._lastServerId = lastPeerId;
+                                               peer.reconnect();
+					       } }, 120000);
     
     
 /* if (conn) {
