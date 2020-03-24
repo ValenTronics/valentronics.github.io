@@ -37,8 +37,8 @@ h1{
   position:fixed;
   width:128px; 
   height:128px;
-  top:15px;
-  left: 585px;/*599*/
+  top:110px;/*15px*/
+  left: 585px;/*599 585*/
   right:auto;
   background:white;
   display:none;
