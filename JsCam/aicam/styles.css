@@ -15,7 +15,7 @@ h1{
 }
 #recordingcanvas{
   position: fixed;
-  top:740;/*740*/
+  top:740px;/*740*/
   bottom: auto;
   left: 0px;
   background:black;
