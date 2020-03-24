@@ -59,6 +59,69 @@ button{
 #root{
   z-index: 10;
 }
+@media screen and (min-width: 720px) {
+body {
+  background: white;
+}
+h1{
+  
+  position: fixed;
+  color:black;
+  top: 90px;/*90*/
+  left: 7px;
+  right: auto;
+  
+}
+#container{
+  
+}
+#recordingcanvas{
+  position: fixed;
+  top:740;/*740*/
+  bottom:0px;
+  left: 0px;
+  background:black;
+  width: 720px; 
+  height: 405px; 
+}
+#root video, #root canvas{
+  position: fixed;
+  top: 150px;/*150*/
+  left:7px;
+}
+#objectdetection{
+  position: fixed;
+  top: 200px;
+  left:7px;
+  color:black;
+}
+#qrcode{
+  position:fixed;
+  width:128px; 
+  height:128px;
+  top:15px;/*15px*/
+  left: 599px;/*599 585*/
+  right:auto;
+  background:white;
+  display:none;
+}
+#canvas{
+
+}
+button{
+  
+}
+#status{
+  position: fixed;
+  bottom: auto;
+  top: 692px;
+  left: 7x;
+  color: black;
+}
+#root{
+  z-index: 10;
+}
+}
 
 @media screen and (min-width: 1670px) {/*1026 and bigger*/
   /* For desktop: */
