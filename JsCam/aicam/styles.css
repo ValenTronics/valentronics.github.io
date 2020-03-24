@@ -6,7 +6,7 @@ h1{
   position: fixed;
   color:black;
   top: 5px;/*90*/
-  left:192px;
+  left:191px;
   right: auto;
   
 }
@@ -38,7 +38,7 @@ h1{
   width:128px; 
   height:128px;
   top: 90px;/*15px*/
-  left: 585px;/*599 585*/
+  left: 580px;/*599 585*/
   right:auto;
   background:white;
   display:none;
