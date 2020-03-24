@@ -59,7 +59,7 @@ button{
 #root{
   z-index: 10;
 }
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 721px) {
 body {
   background: white;
 }
