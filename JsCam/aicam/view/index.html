@@ -109,7 +109,7 @@ peer.on('disconnected', function () {
     
                   if (conn) {conn.close();}
 	conn = peer.connect(remotePeerId, {
-                        reliable: false
+                        reliable: true
                     });
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
