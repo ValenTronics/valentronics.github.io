@@ -5,7 +5,7 @@ h1{
   
   position: fixed;
   color:black;
-  top: 90px;
+  top: 70px;/*90*/
   left:7px;
   right: auto;
   
@@ -23,7 +23,7 @@ h1{
 }
 #root video, #root canvas{
   position: fixed;
-  top: 150px;
+  top: 130px;
   left:7px;
 }
 #objectdetection{
