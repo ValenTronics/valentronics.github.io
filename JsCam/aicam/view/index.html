@@ -102,8 +102,8 @@ peer.on('disconnected', function () {
                         console.log('Connection destroyed');
                     });
                     peer.on('error', function (err) {
-                        console.log(err);
-                        document.getElementById("status").innerHTML = err;
+                        console.log("ERRROR: "+err.type);
+                        document.getElementById("status").innerHTML = "ERRROR: "+err.type;
                     });
     
     
