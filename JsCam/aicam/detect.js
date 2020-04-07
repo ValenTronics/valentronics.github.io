@@ -63,7 +63,7 @@ class App extends React.Component {
 
       // Draw the text last to ensure it's on top.
       ctx.fillStyle = "#000000";
-      ctx.fillText(prediction.class, x, y);
+      ctx.fillText((prediction.class.includes("person") ? 'Human' : prediction.class), x, y);
       ctx.fillText(prediction.score.toFixed(2), x, y + height - textHeight);
     });
   };
