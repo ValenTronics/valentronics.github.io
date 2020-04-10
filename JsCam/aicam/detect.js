@@ -74,7 +74,7 @@ class App extends React.Component {
       const webcamPromise = navigator.mediaDevices
         .getUserMedia({
           video: {
-            facingMode: "environment",
+            //facingMode: "environment",
             width: {min: 320, ideal: 1280, max: 1920},
             height: {min: 240, ideal: 720, max: 1080},
           },
