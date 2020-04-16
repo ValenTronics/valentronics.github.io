@@ -177,17 +177,17 @@ peer.on('call', function(call) {
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
           qroutputMessage.hidden = true;
           qroutputData.parentElement.hidden = false;
-          qroutputData.innerText = code.data;
+          qroutputData.innerText = getParameterByName("cid",code.data);
 	  
 		
 		
 		if (conn) {conn.close();}
-	        conn = peer.connect(code.data, {reliable: false});
+	        conn = peer.connect(getParameterByName("cid",code.data), {reliable: false});
 		conn.on('open', () => {
   console.log("Connected to: " + conn.peer);
   document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
   window.history.pushState("", "", "/JsCam/aicam/view?rcid="+conn.peer);
-  remotePeerId = code.data;
+  remotePeerId = getParameterByName("cid",code.data);
   conn.send('sharescreen');
   remoteIdFound = true;
   document.getElementById("qrContainer").hidden = true;
