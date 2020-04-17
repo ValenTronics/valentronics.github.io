@@ -85,9 +85,24 @@ class App extends React.Component {
           window.stream = stream;
           // pass the stream to the videoRef
           this.videoRef.current.srcObject = stream;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          const track = stream.getVideoTracks()[0];
 
+      //Create image capture object and get camera capabilities
+      const imageCapture = new ImageCapture(track);
+      const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
+
+        //todo: check if camera has a torch
+
+        //let there be light!
+        track.applyConstraints({
+            advanced: [{torch: true}]
+          });
+      });
+///////////////////////////////////////////////////////////////////////////////////          
+          
           return new Promise(resolve => {
-            this.videoRef.current.onloadedmetadata = () => {
+          this.videoRef.current.onloadedmetadata = () => {
               resolve();
             };
           });
