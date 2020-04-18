@@ -94,6 +94,9 @@ class App extends React.Component {
 
         //todo: check if camera has a torch
 
+        
+        
+        window.ttrack = track;
         //let there be light!
        const btn = document.querySelector('.flashswitch');
         btn.addEventListener('click', function(){
