@@ -124,7 +124,9 @@ peer.on('connection', (conn) => {
       peer.call(conn.peer, window.stream);
     }else if(data.includes("flashon")){
 	     flashOn();
-	     }
+	     }else if(data.includes("flashoff")){
+		      flashOff();
+		      }
   });
   
 });
