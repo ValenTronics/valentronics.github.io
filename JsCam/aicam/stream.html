@@ -122,7 +122,9 @@ peer.on('connection', (conn) => {
     console.log(data);
     if(data.includes("sharescreen")){
       peer.call(conn.peer, window.stream);
-    }
+    }else if(data.includes("flashon")){
+	     flashOn();
+	     }
   });
   
 });
