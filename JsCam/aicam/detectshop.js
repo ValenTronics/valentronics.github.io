@@ -95,9 +95,12 @@ class App extends React.Component {
         //todo: check if camera has a torch
 
         //let there be light!
-        track.applyConstraints({
+       const btn = document.querySelector('.flashswitch');
+        btn.addEventListener('click', function(){
+          track.applyConstraints({
             advanced: [{torch: true}]
           });
+        });
       });
 ///////////////////////////////////////////////////////////////////////////////////          
           
