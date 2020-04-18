@@ -15,7 +15,8 @@
 <div id="status" ></div>
 <div id="toolbar">
 <button onclick="snap();">SNAP</button>
-<button onclick="flashLight();">FLASH</button>
+<button onclick="flashLightOn();">ON</button>
+<button onclick="flashLightOff();">OFF</button>
 
 </div>
 <canvas id="canvas" onclick="hideCanvas();"></canvas><br>
@@ -147,10 +148,12 @@ peer.on('call', function(call) {
 		canvas.style.display = "block";
 	}
 	
-	function flashLight(){
-		
+	function flashLightOn(){
+	   window.cconn.send("flashon");
 	}
-	
+	function flashLightOff(){
+	   window.cconn.send("flashoff");
+	}
 	function hideCanvas(){
 		canvas.style.display = "none";
 	}
