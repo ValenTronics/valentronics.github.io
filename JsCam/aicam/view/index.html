@@ -116,7 +116,7 @@ peer.on('disconnected', function () {
   console.log("Connected to: " + conn.peer);
   document.getElementById("status").innerHTML = "Connected to: " + conn.peer;
   conn.send('sharescreen');
-  conn.send('flashon');
+  window.cconn = conn;
   document.getElementById("qrContainer").hidden = true;
   document.getElementById("camContainer").style.display = "block";
 });
@@ -196,7 +196,7 @@ peer.on('call', function(call) {
   window.history.pushState("", "", "/JsCam/aicam/view?rcid="+conn.peer);
   remotePeerId = getParameterByName("rcid",code.data);
   conn.send('sharescreen');
-  conn.send('flashon');
+  window.cconn = conn;
   remoteIdFound = true;
   document.getElementById("qrContainer").hidden = true;
   document.getElementById("camContainer").style.display = "block";
